@@ -1,0 +1,44 @@
+<mat-toolbar  color="primary">
+  <button mat-icon-button class="icon" aria-label="icon-button with home icon">
+      <mat-icon>home</mat-icon>
+  </button>
+  <span>Crop Tool</span>
+</mat-toolbar>
+<div>
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="Container box">
+      <h4 class="center">Employee Login</h4>
+      <form class="mt-4" #userForm="ngForm" [formGroup] = "userform">
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping"><mat-icon color="primary">account_circle</mat-icon></span>
+                <input class="form-control h50" formControlName="email" type="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"><mat-icon color="primary">vpn_key</mat-icon></span>
+              <input class="form-control h50" formControlName="password" type="password" placeholder="Password" required>
+            </div>
+            <div>
+              <mat-checkbox color="primary">Remember Password</mat-checkbox>
+            </div>
+            
+                <button type="submit" (click)="login()" mat-raised-button class="w100" color="primary">Login</button>
+
+              <div class="mt-3 center">
+                <label style="font-size: 14px;" >If you dont have account! Click register button</label>
+                <a routerLink="/register" routerLinkActive="active">
+                <button type="submit" mat-raised-button class="w100" color="primary">Register</button></a>
+              </div>
+                    
+  
+    </form>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+  </div>
+  </div>
+  </div>

@@ -1,0 +1,35 @@
+
+<mat-toolbar  color="primary">
+    <button mat-icon-button class="icon" aria-label="icon-button with home icon">
+        <mat-icon>home</mat-icon>
+    </button>
+    <span>Welcome to Crop Tool</span>
+    <span class="spacer"></span>
+    <button mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      Logout
+    </button>
+</mat-toolbar>
+<div>
+    <div class="container-fluid ">
+      <div class="row mt-4">
+        <div class="col-md-12">
+            <mat-card>
+              <mat-card-title >Image editing options</mat-card-title>
+            <div class="container row">
+              <div class="col-md-6">
+                  <input type="file" (change)="onFileChanged($event)">
+          
+              </div>
+              <div class="col-md-3">
+                <button type="submit" (click)="onUpload()" mat-raised-button class="w100" color="primary">Upload</button>
+              </div>
+              <div class="col-md-3"></div>
+          </div>
+        </mat-card>
+        </div>
+      </div>
+    </div>
+</div>

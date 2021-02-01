@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.center {
+    text-align: center;
+}
+.spacer{
+    flex: 1 1 auto;
+}
+
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: 1px solid rgb(200,200,200);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline: none !important;
+    border: 1px solid rgb(100, 100, 100);
+    box-shadow: 0 0 0px #fff;
+}
+
+.w60{
+    width: 60px;
+}
+
+.w100{
+    width: 100%;
+}
+
+.h50{
+    height: 50px;
+}
+
+.bgprimary{
+    background-color: #3f51b5;
+}
+
+.box{
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    padding: 7%;
+    box-shadow: 1px 1px 3px 3px rgb(200, 200, 200);
+}
+
+.bg{
+    background-color: rgb(230, 230, 230);
+}
+
+.center{
+    text-align: center;
+}
+
+th {
+    cursor: pointer;
+  }
