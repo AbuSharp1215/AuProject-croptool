@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MainService } from 'src/app/services/main.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -13,8 +16,12 @@ export class RegisterComponent implements OnInit {
 
   role:String;
 
-  constructor(private _snackBar: MatSnackBar) {
-    this.empRole = [
+  constructor(private _snackBar: MatSnackBar, 
+    public dialog: MatDialog, 
+    private service:MainService,
+    private route:Router) {
+    
+      this.empRole = [
       "Employee","Manager"
     ];
     this.role="";
@@ -22,6 +29,15 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RegisterSuccess);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
   }
 
   getRole(role){
@@ -38,6 +54,7 @@ export class RegisterComponent implements OnInit {
 
 
   register(){
+    
     if(this.userform.invalid){
       this._snackBar.open("Please fill all fields correctly", "Validation error", {
         duration: 2000,
@@ -52,6 +69,16 @@ export class RegisterComponent implements OnInit {
       this.userform.value.role = this.role;
       console.log(this.userform.value);
 
+      this.service.signUp(this.userform.value).subscribe({
+        next:response =>{
+          console.log(response);
+          alert("signup successfully");
+          this.route.navigate(['/login']);
+        },
+        error:err =>{
+          console.log(err);
+        }
+      });
       
     }
     
@@ -59,3 +86,11 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+
+@Component({
+  selector: 'register-success',
+  template: '<p>User Registered Successfully<p>'
+})
+export class RegisterSuccess {}
+
+

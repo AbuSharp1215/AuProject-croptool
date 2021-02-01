@@ -5,10 +5,10 @@
     </button>
     <span>Welcome to Crop Tool</span>
     <span class="spacer"></span>
-    <button mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
       <mat-icon>logout</mat-icon>
     </button>
-    <button mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
       Logout
     </button>
 </mat-toolbar>
@@ -26,7 +26,10 @@
               <div class="col-md-3">
                 <button type="submit" (click)="onUpload()" mat-raised-button class="w100" color="primary">Upload</button>
               </div>
-              <div class="col-md-3"></div>
+              <div class="col-md-3">
+                <img [src]="imgSrc" width="100px">
+                <img [src]="retrievedImage" width="100px">
+              </div>
           </div>
         </mat-card>
         </div>

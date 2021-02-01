@@ -19,7 +19,7 @@ export class MainService {
   private baseUrl = "/api/employee/";
   private login = "login";
   private signup = "signup";
-  private edit = "editImage";
+  private edit = "editImage/";
 
   signUp(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.signup, userData, httpOptions);
@@ -27,6 +27,10 @@ export class MainService {
 
   loginUser(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.login, userData, httpOptions);
+  }
+
+  uploadImage(imageDate, empId):Observable<any>{
+    return this.http.post<any>(this.baseUrl+this.edit+empId, imageDate, {observe:'response'});
   }
 
 

@@ -15,12 +15,12 @@
             
             <div class="input-group mb-3">
                 <span class="input-group-text" id="addon-wrapping"><mat-icon color="primary">account_circle</mat-icon></span>
-                <input class="form-control h50" formControlName="email" type="email" placeholder="Email" required>
+                <input class="form-control h50" formControlName="email" [(ngModel)]="email" type="email" placeholder="Email" required>
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1"><mat-icon color="primary">vpn_key</mat-icon></span>
-              <input class="form-control h50" formControlName="password" type="password" placeholder="Password" required>
+              <input class="form-control h50" formControlName="password" [(ngModel)]="password" type="password" placeholder="Password" required>
             </div>
             <div>
               <mat-checkbox color="primary">Remember Password</mat-checkbox>
