@@ -35,30 +35,30 @@ export class LoginComponent implements OnInit {
   });
 
   login(){
-    if(this.userform.invalid){
-      this._snackBar.open("Please fill all fields correctly", "Validation error", {
-        duration: 2000,
-      })
-    }
-    else{
-      console.log("form submitted"+this.userform.value);
-      console.log(this.email);
-      console.log(this.password);
-      this.data.email = this.email;
-      this.data.password = this.password;
+    // if(this.userform.invalid){
+    //   this._snackBar.open("Please fill all fields correctly", "Validation error", {
+    //     duration: 2000,
+    //   })
+    // }
+    // else{
+    //   console.log("form submitted"+this.userform.value);
+    //   console.log(this.email);
+    //   console.log(this.password);
+    //   this.data.email = this.email;
+    //   this.data.password = this.password;
 
-      this.service.loginUser(this.data).subscribe({
-        next:response => {
-          console.log(response);
-          sessionStorage.setItem("Employee",JSON.stringify(response));
-          this.router.navigate(['/croptool']);
-        },
-        error: err =>{
-          console.log(err);
-        }
-      });
-      // this.router.navigate(['/croptool']);
-    }
+    //   this.service.loginUser(this.data).subscribe({
+    //     next:response => {
+    //       console.log(response);
+    //       sessionStorage.setItem("Employee",JSON.stringify(response));
+    //       this.router.navigate(['/croptool']);
+    //     },
+    //     error: err =>{
+    //       console.log(err);
+    //     }
+    //   });
+       this.router.navigate(['/manager']);
+    //}
     
   }
 

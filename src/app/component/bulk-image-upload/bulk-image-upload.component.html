@@ -1,0 +1,74 @@
+<mat-toolbar  color="primary">
+    <button mat-icon-button class="icon" aria-label="icon-button with home icon">
+        <mat-icon>home</mat-icon>
+    </button>
+    <span>Manager</span>
+    <span class="spacer"></span>
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      Logout
+    </button>
+</mat-toolbar>
+
+<div>
+    <div class="container-fluid ">
+      <div class="row mt-4">
+        <div class="col-md-12">
+            <mat-card >
+              <mat-card-title >Image editing options</mat-card-title>
+              
+              
+              <ng-container *ngFor="let item of bulkImageArray;let i=index">
+            <div class="row" >
+              <div class="col-md-12">
+                  <!-- <input type="file" (change)="onFileChanged($event)"> -->
+                  <div class="row">
+                    <div class="col-md-3">
+                        <!-- <input type="text" [(ngModel)]="item.fileName" /> -->
+                        <mat-form-field  class="w100">
+                            <mat-label>Employee Id</mat-label>
+                            <mat-select (selectionChange) = "getSelected($event)" [(ngModel)]="item.employeeId">
+                              <mat-option *ngFor= "let employeeId of employeeList" [value] ="employeeId" >{{employeeId}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="file" (change)="onFileChanged($event,item)" />
+                    </div>
+                    
+                    <div class="col-md-1">
+                        
+                        <div class="button-container">
+            
+                            <button mat-fab color="warn" (click)="upload(item)" aria-label="icon button with a edit icon">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                        </div>
+                      </div>
+                   
+                    <div class="col-md-2">
+                        <div class="button-container">
+            
+                            <button mat-fab color="warn" (click)="deleteEmptyRow(i)" aria-label="icon button with a delete icon">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                        
+                      </div>
+                  </div>
+                </div>
+           </div>
+        </ng-container>
+        <div class="button-container">
+            <button mat-fab color="warn" (click)="addEmptyRow()" aria-label="icon button with a plus one icon">
+              <mat-icon>plus_one</mat-icon>
+            </button>
+        </div>
+        <!-- <button  mat-raised-button class="w100 mt-3" color="primary" (click)="addEmptyRow()">Add</button> -->
+                  </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

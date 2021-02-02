@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ImageCropperModule } from './image-cropper/image-cropper.module';
+import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-image-upload.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ImageCropperModule } from './image-cropper/image-cropper.module';
     ImageUploadComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterSuccess
+    RegisterSuccess,
+    BulkImageUploadComponent
   ],
   imports: [
     BrowserModule,
