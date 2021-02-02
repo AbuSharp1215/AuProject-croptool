@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ImageCropperModule } from './image-cropper/image-cropper.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

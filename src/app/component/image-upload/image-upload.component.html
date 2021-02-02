@@ -18,21 +18,106 @@
         <div class="col-md-12">
             <mat-card>
               <mat-card-title >Image editing options</mat-card-title>
-            <div class="container row">
+            <div class="row">
               <div class="col-md-6">
-                  <input type="file" (change)="onFileChanged($event)">
-          
+                  <!-- <input type="file" (change)="onFileChanged($event)"> -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="file" (change)="fileChangeEvent($event)" />
+                    </div>
+                    <div class="col-md-6">
+                      <button (click)="toggleContainWithinAspectRatio()" mat-raised-button class="w100" color="primary">{{containWithinAspectRatio?'Fill Aspect Ratio':'Contain Within Aspect Ratio'}}</button>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <button type="submit" (click)="onUpload()" mat-raised-button class="w100" color="primary">Edit Image</button>
+                    </div>
+                    <div class="col-md-3">
+                      <button (click)="resetImage()" mat-raised-button class="w100" color="primary">Reset image</button>
+                    </div>
+                    <div class="col-md-3">
+                      <button (click)="zoomOut()" mat-raised-button class="w100" color="primary">Zoom -</button> 
+                    </div>
+                    <div class="col-md-3">
+                      <button (click)="zoomIn()" mat-raised-button class="w100" color="primary">Zoom +</button>
+                    </div>
+                  </div>
               </div>
-              <div class="col-md-3">
-                <button type="submit" (click)="onUpload()" mat-raised-button class="w100" color="primary">Upload</button>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label>Rotation Degree</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" /> 
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div class="col-md-3">
+                    <button (click)="rotateLeft()" mat-raised-button class="w100" color="primary">Rotate left</button>
+                  </div>
+                  <div class="col-md-3">
+                    <button (click)="rotateRight()" mat-raised-button class="w100" color="primary">Rotate right</button>
+                  </div>
+                  <div class="col-md-3">
+                    <button (click)="flipHorizontal()" mat-raised-button class="w100" color="primary">Flip horizontal</button>
+                  </div>
+                  <div class="col-md-3">
+                    <button (click)="flipVertical()" mat-raised-button class="w100" color="primary">Flip vertical</button>
+                  </div>
+                </div>
+                <!-- <button type="submit" (click)="onUpload()" mat-raised-button class="w100" color="primary">Upload</button> -->
               </div>
-              <div class="col-md-3">
+              <!-- <div class="col-md-3">
                 <img [src]="imgSrc" width="100px">
                 <img [src]="retrievedImage" width="100px">
-              </div>
+              </div> -->
           </div>
+          <!------------row 2-->
+          <div class="row mt-3">
+            
+            <div class="col-md-3">
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [containWithinAspectRatio]="containWithinAspectRatio"
+                [aspectRatio]="4 / 3"
+                [resizeToWidth]="256"
+                [cropperMinWidth]="128"
+                [onlyScaleDown]="true"
+                [roundCropper]="false"
+                [canvasRotation]="canvasRotation"
+                [transform]="transform"
+                [alignImage]="'left'"
+                [style.display]="showCropper ? null : 'none'"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady($event)"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
+                
+            </div>
+            <div class="col-md-3">
+              <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+
+            </div>
+
+            <div class="col-md-3">
+              <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+
+            </div>
+
+            <div class="col-md-3">
+              <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+
+            </div>
+        </div>
         </mat-card>
         </div>
       </div>
     </div>
 </div>
+
