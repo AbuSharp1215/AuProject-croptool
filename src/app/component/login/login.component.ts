@@ -47,17 +47,17 @@ export class LoginComponent implements OnInit {
       this.data.email = this.email;
       this.data.password = this.password;
 
-      // this.service.loginUser(this.data).subscribe({
-      //   next:response => {
-      //     console.log(response);
-      //     sessionStorage.setItem("Employee",JSON.stringify(response));
-      //     this.router.navigate(['/croptool']);
-      //   },
-      //   error: err =>{
-      //     console.log(err);
-      //   }
-      // });
-      this.router.navigate(['/croptool']);
+      this.service.loginUser(this.data).subscribe({
+        next:response => {
+          console.log(response);
+          sessionStorage.setItem("Employee",JSON.stringify(response));
+          this.router.navigate(['/croptool']);
+        },
+        error: err =>{
+          console.log(err);
+        }
+      });
+      // this.router.navigate(['/croptool']);
     }
     
   }

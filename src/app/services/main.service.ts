@@ -6,6 +6,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
   })
+  
   //responseType: 'text' as 'json'
 };
 
@@ -16,10 +17,10 @@ export class MainService {
 
   constructor(private http:HttpClient) { }
 
-  private baseUrl = "/api/employee/";
-  private login = "login";
-  private signup = "signup";
-  private edit = "editImage/";
+  private baseUrl = "/api/";
+  private login = "employee/login";
+  private signup = "employee/signup";
+  private edit = "image/editImage/";
 
   signUp(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.signup, userData, httpOptions);
@@ -32,6 +33,9 @@ export class MainService {
   uploadImage(imageDate, empId):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.edit+empId, imageDate, {observe:'response'});
   }
-
+  
+  uploadAndGetImage(imageDate, empId):Observable<any>{
+    return this.http.post<any>(this.baseUrl+this.edit+empId, imageDate, httpOptions);
+  }
 
 }

@@ -24,12 +24,14 @@ export class ImageUploadComponent implements OnInit {
   selectedFile: File;
   userData:any;
   imgSrc:any;
-  retrievedImage: any;
+  retrievedImage: any = '';
   base64Data: any;
+  byteArray:any;
+  imageData:any;
 
   constructor(private route:Router, private service:MainService) {
-    //this.userData = JSON.parse(sessionStorage.getItem("Employee"));
-    //console.log(this.userData);
+    this.userData = JSON.parse(sessionStorage.getItem("Employee"));
+    console.log(this.userData);
    }
 
   ngOnInit(): void {
@@ -53,7 +55,27 @@ export class ImageUploadComponent implements OnInit {
   onUpload() {
     console.log(this.selectedFile);
     console.log(base64ToFile(this.croppedImage));
+    this.byteArray = this.croppedImage.substring(this.croppedImage.indexOf("base64,")+"base64,".length); 
+    this.imageData = {
+      imageFileName:"hello",
+      imageFileType:base64ToFile(this.croppedImage).type,
+      imageFileData:this.byteArray
+    }
     
+    console.log(this.imageData);
+
+    this.service.uploadAndGetImage(this.imageData, this.userData.employeeId).subscribe({
+      next: response =>{
+        console.log(response);
+        this.base64Data = response.imageFileData;
+        this.retrievedImage = 'data:image/jpeg;base64,'+this.base64Data;
+      },
+      error: err =>{
+        console.log("Error occured");
+        console.log(err);
+      }
+    });
+
     // const uploadImageData = new FormData();
     // uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
 
