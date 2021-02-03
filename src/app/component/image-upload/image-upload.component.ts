@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainService } from 'src/app/services/main.service';
 import { Dimensions, ImageCroppedEvent, ImageTransform } from './../../image-cropper/interfaces/index';
 import {base64ToFile} from './../../image-cropper/utils/blob.utils';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -29,10 +31,13 @@ export class ImageUploadComponent implements OnInit {
   byteArray:any;
   imageData:any;
 
-  constructor(private route:Router, private service:MainService) {
+  constructor(private route:Router, private service:MainService,
+    private _snackBar: MatSnackBar) {
+        
     this.userData = JSON.parse(sessionStorage.getItem("Employee"));
     console.log(this.userData);
    }
+
 
   ngOnInit(): void {
   }
@@ -57,14 +62,15 @@ export class ImageUploadComponent implements OnInit {
     console.log(base64ToFile(this.croppedImage));
     this.byteArray = this.croppedImage.substring(this.croppedImage.indexOf("base64,")+"base64,".length); 
     this.imageData = {
-      imageFileName:"hello",
+      employeeId:this.userData.employeeId,
+      imageFileName:this.selectedFile.name,
       imageFileType:base64ToFile(this.croppedImage).type,
       imageFileData:this.byteArray
     }
     
     console.log(this.imageData);
 
-    this.service.uploadAndGetImage(this.imageData, this.userData.employeeId).subscribe({
+    this.service.uploadAndGetImage(this.imageData).subscribe({
       next: response =>{
         console.log(response);
         this.base64Data = response.imageFileData;
@@ -73,6 +79,9 @@ export class ImageUploadComponent implements OnInit {
       error: err =>{
         console.log("Error occured");
         console.log(err);
+        this._snackBar.open("Internal Server Error", "Error", {
+            duration: 2000,
+          })
       }
     });
 

@@ -21,6 +21,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ImageCropperModule } from './image-cropper/image-cropper.module';
 import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-image-upload.component';
+import { ImageEditOptionsComponent } from './component/image-edit-options/image-edit-options.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-ima
     LoginComponent,
     RegisterComponent,
     RegisterSuccess,
-    BulkImageUploadComponent
+    BulkImageUploadComponent,
+    ImageEditOptionsComponent
   ],
   imports: [
     BrowserModule,

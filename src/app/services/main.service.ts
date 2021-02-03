@@ -20,7 +20,8 @@ export class MainService {
   private baseUrl = "/api/";
   private login = "employee/login";
   private signup = "employee/signup";
-  private edit = "image/editImage/";
+  private edit = "image/editImage";
+  private bulk = "image/bulkEdit";
 
   signUp(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.signup, userData, httpOptions);
@@ -34,8 +35,12 @@ export class MainService {
     return this.http.post<any>(this.baseUrl+this.edit+empId, imageDate, {observe:'response'});
   }
   
-  uploadAndGetImage(imageDate, empId):Observable<any>{
-    return this.http.post<any>(this.baseUrl+this.edit+empId, imageDate, httpOptions);
+  uploadAndGetImage(imageDate):Observable<any>{
+    return this.http.post<any>(this.baseUrl+this.edit, imageDate, httpOptions);
+  }
+
+  uploadBulk(imageDate):Observable<any>{
+    return this.http.post<any>(this.baseUrl+this.bulk, imageDate, httpOptions);
   }
 
 }
