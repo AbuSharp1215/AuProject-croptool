@@ -16,10 +16,19 @@
      
          
             <input class="form-control h50" formControlName="employeeName" type="text" placeholder="Employee Name" required>
-            
+            <div  *ngIf="nameLength.errors?.minlength" class="alert alert-danger" role="alert">
+              Password atleast have 3 characters
+            </div>
+
             <input class="form-control h50" formControlName="email" type="email" placeholder="Email" required>
+            <div  *ngIf="userform.hasError('email', 'email')" class="alert alert-danger" role="alert">
+              Enter valid email address
+            </div>
            
             <input class="form-control h50" formControlName="password" type="password" placeholder="Password" required>
+            <div  *ngIf="passwordLength.errors?.minlength" class="alert alert-danger" role="alert">
+              Password atleast have 6 characters
+            </div>
 
             <mat-form-field  >
               <mat-label>Role</mat-label>

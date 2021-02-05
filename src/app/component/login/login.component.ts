@@ -12,6 +12,7 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class LoginComponent implements OnInit {
 
+  passwordSuccess:boolean;
   email:String;
   password:String;
 
@@ -24,15 +25,26 @@ export class LoginComponent implements OnInit {
         email:"",
         password:""
       }
+      this.passwordSuccess = false;
      }
 
   ngOnInit(): void {
   }
 
   userform = new FormGroup({
-    email: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.email]),
+    password: new FormControl('',[Validators.required,Validators.minLength(6)]),
   });
+
+  get passwordLength() {
+    return this.userform.get('password');
+  }   
+  
+  emailErr(){
+    this._snackBar.open("Please fill Email correctly", "Validation error", {
+      duration: 2000,
+    })
+  }
 
   login(){
     if(this.userform.invalid){
@@ -51,13 +63,13 @@ export class LoginComponent implements OnInit {
         next:response => {
           console.log(response);
           var role = response.role;
-          if(role=='Manager'){
-            sessionStorage.setItem(role,JSON.stringify(response));
-            this.router.navigate(['/manager']);
+          if(role=='manager'){
+            sessionStorage.setItem("employee",JSON.stringify(response));
+            this.router.navigate(['/manager/selfupload']);
           }
           else{
-            sessionStorage.setItem(role,JSON.stringify(response));
-            this.router.navigate(['/croptool']);
+            sessionStorage.setItem("employee",JSON.stringify(response));
+            this.router.navigate(['/employee']);
           }
           
         },

@@ -4,6 +4,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { ImageEditOptionsComponent } from '../image-edit-options/image-edit-options.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { MainService } from 'src/app/services/main.service';
+import {base64ToFile} from './../../image-cropper/utils/blob.utils';
+
+declare var require: any;
 
 export interface DialogData {
   event: any,
@@ -19,11 +22,13 @@ export class BulkImageUploadComponent implements OnInit {
 
   bulkImageArray:any;
   employeeList:any;
+  employeeIds:any;
+  tempId:any;
   selectedFile:any;
   imageChangeEvent:any;
 
   cropperImage:any;
-
+  responseArray:any;
   imageObject:any = {
     file:null,
     employeeId:'',
@@ -43,20 +48,50 @@ export class BulkImageUploadComponent implements OnInit {
 
   userData:any;
   byteArray:any;
+  
 
   constructor(private route:Router,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private service:MainService) {
 
-      
+    this.responseArray=[];
     this.bulkImageArray = [];
     this.requestBody = [];
-    this.employeeList = [1,2,3,4,5,6];
+    this.employeeList = [];
+    this.employeeIds = [];
+    this.tempId = [];
 
-    this.userData = JSON.parse(sessionStorage.getItem("Manager"));
-    console.log(this.userData);
+   
    }
+
+   ngOnInit(): void {
+    this.userData = JSON.parse(sessionStorage.getItem("employee"));
+    if(!this.userData){
+      console.log("no data found");
+      this.route.navigate(['']);
+    } 
+    console.log(this.userData);
+
+    this.service.getEmployeeByManagerId(this.userData.employeeId).subscribe({
+      next:response => {
+        console.log(response);
+        this.employeeList = response.subordinateList;
+        if(this.employeeList){
+          this.employeeList.forEach((element, index) => {
+            this.employeeIds[index] = this.employeeList[index].employeeId;
+          });
+          this.employeeIds.sort();
+          console.log(this.employeeList);
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+
+   
+  }
 
    openDialog(item): void {
      if(item.imageFileData==''){
@@ -76,8 +111,7 @@ export class BulkImageUploadComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+ 
 
   logout(){
     sessionStorage.clear();
@@ -85,11 +119,19 @@ export class BulkImageUploadComponent implements OnInit {
   }
 
   getSelected(event){
+    this.tempId.push(event.value);
     console.log(event);
+    console.log(this.bulkImageArray);
   }
 
   addEmptyRow(){
-    this.bulkImageArray.push(JSON.parse(JSON.stringify(this.imageObject)));
+    if(this.bulkImageArray.length<this.employeeList.length)
+      this.bulkImageArray.push(JSON.parse(JSON.stringify(this.imageObject)));
+    else{
+      this._snackBar.open("only "+this.employeeList.length+" employees assigned to you", "Limitaion error", {
+        duration: 2000,
+      })
+    }
   }
 
   upload(item){
@@ -149,7 +191,8 @@ export class BulkImageUploadComponent implements OnInit {
       console.log(this.requestBody)
       this.service.uploadBulk(this.requestBody).subscribe({
         next:response =>{
-          console.log(response.responseEditedImages);
+          console.log("response from server "+response.responseEditedImages);
+          this.responseArray = response.responseEditedImages;
           response.responseEditedImages.forEach((element,index) => {
             console.log(element);
             console.log(index);
@@ -164,5 +207,10 @@ export class BulkImageUploadComponent implements OnInit {
     }
 
     
+  }
+
+  download(index){
+    var FileSaver = require('file-saver');
+    FileSaver.saveAs(base64ToFile('data:image/jpeg;base64,'+this.responseArray[index].imageFileData), this.responseArray[index].imageFileName+"_image.jpeg");
   }
 }

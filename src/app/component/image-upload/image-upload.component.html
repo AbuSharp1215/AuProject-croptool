@@ -1,17 +1,4 @@
 
-<mat-toolbar  color="primary">
-    <button mat-icon-button class="icon" aria-label="icon-button with home icon">
-        <mat-icon>home</mat-icon>
-    </button>
-    <span>Welcome to Crop Tool</span>
-    <span class="spacer"></span>
-    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
-      <mat-icon>logout</mat-icon>
-    </button>
-    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
-      Logout
-    </button>
-</mat-toolbar>
 <div>
     <div class="container-fluid ">
       <div class="row mt-4">
@@ -105,8 +92,12 @@
 
             </div>
 
-            <div class="col-md-6">
-              <img [src]="retrievedImage" [style.border]="retrievedImage ? '1px solid black' : 'none'" width="50%"/>
+            <div class="col-md-3">
+              <img [src]="retrievedImage" [style.border]="retrievedImage ? '1px solid black' : 'none'" width="100%"/>
+
+            </div>
+            <div class="col-md-3">
+              <button (click)="download()" mat-raised-button class="w100" [style.display]="retrievedImage ? 'block' : 'none'" color="primary">Download</button>
 
             </div>
         </div>

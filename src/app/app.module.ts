@@ -22,6 +22,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ImageCropperModule } from './image-cropper/image-cropper.module';
 import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-image-upload.component';
 import { ImageEditOptionsComponent } from './component/image-edit-options/image-edit-options.component';
+import { EmployeeComponent } from './component/employee/employee.component';
+import { ManagerComponent } from './component/manager/manager.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ImageEditOptionsComponent } from './component/image-edit-options/image-
     RegisterComponent,
     RegisterSuccess,
     BulkImageUploadComponent,
-    ImageEditOptionsComponent
+    ImageEditOptionsComponent,
+    EmployeeComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

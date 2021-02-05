@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     private route:Router) {
     
       this.empRole = [
-      "Employee","Manager"
+      "employee","manager"
     ];
     this.role="";
 
@@ -47,11 +47,18 @@ export class RegisterComponent implements OnInit {
   }
 
   userform = new FormGroup({
-    employeeName:new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
+    employeeName:new FormControl('',[Validators.required,Validators.minLength(3)]),
+    email: new FormControl('',[Validators.email]),
+    password: new FormControl('',[Validators.required,Validators.minLength(6)]),
   });
 
+  get passwordLength() {
+    return this.userform.get('password');
+  }  
+
+  get nameLength() {
+    return this.userform.get('employeeName');
+  }  
 
   register(){
     

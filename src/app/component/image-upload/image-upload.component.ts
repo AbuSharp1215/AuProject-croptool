@@ -4,7 +4,9 @@ import { MainService } from 'src/app/services/main.service';
 import { Dimensions, ImageCroppedEvent, ImageTransform } from './../../image-cropper/interfaces/index';
 import {base64ToFile} from './../../image-cropper/utils/blob.utils';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { saveAs } from 'file-saver';
 
+declare var require: any;
 
 
 @Component({
@@ -14,6 +16,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ImageUploadComponent implements OnInit {
   
+    
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -34,7 +37,11 @@ export class ImageUploadComponent implements OnInit {
   constructor(private route:Router, private service:MainService,
     private _snackBar: MatSnackBar) {
         
-    this.userData = JSON.parse(sessionStorage.getItem("Employee"));
+    this.userData = JSON.parse(sessionStorage.getItem("employee"));
+    if(!this.userData){
+        console.log("no data found");
+        this.route.navigate(['']);
+    } 
     console.log(this.userData);
    }
 
@@ -99,6 +106,11 @@ export class ImageUploadComponent implements OnInit {
     //   }
     // });
 
+  }
+
+  download(){
+    var FileSaver = require('file-saver');
+    FileSaver.saveAs(base64ToFile(this.retrievedImage), "image.jpeg");
   }
 
   //------image cropper//

@@ -22,6 +22,7 @@ export class MainService {
   private signup = "employee/signup";
   private edit = "image/editImage";
   private bulk = "image/bulkEdit";
+  private empList = "employee/getSubordinates/"
 
   signUp(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.signup, userData, httpOptions);
@@ -41,6 +42,10 @@ export class MainService {
 
   uploadBulk(imageDate):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.bulk, imageDate, httpOptions);
+  }
+
+  getEmployeeByManagerId(id):Observable<any>{
+    return this.http.get<any>(this.baseUrl+this.empList+id);
   }
 
 }
