@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { MainService } from 'src/app/services/main.service';
 import {Router} from "@angular/router";
 
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     private service:MainService,
     private route:Router) {
     
-      this.empRole = [
+    this.empRole = [
       "employee","manager"
     ];
     this.role="";

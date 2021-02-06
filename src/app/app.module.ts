@@ -24,6 +24,7 @@ import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-ima
 import { ImageEditOptionsComponent } from './component/image-edit-options/image-edit-options.component';
 import { EmployeeComponent } from './component/employee/employee.component';
 import { ManagerComponent } from './component/manager/manager.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ManagerComponent } from './component/manager/manager.component';
     BulkImageUploadComponent,
     ImageEditOptionsComponent,
     EmployeeComponent,
-    ManagerComponent
+    ManagerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,75 @@
+<mat-toolbar  color="primary">
+    <button mat-icon-button class="icon" aria-label="icon-button with home icon">
+        <mat-icon>home</mat-icon>
+    </button>
+    <span>Admin Panel</span>
+    <span class="spacer"></span>
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button (click)="logout()" mat-icon-button class="icon favorite-icon" aria-label="icon-button with home icon">
+      Logout
+    </button>
+</mat-toolbar>
+
+<div>
+    <div class="container-fluid ">
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <mat-card >
+                    <mat-card-title >Assign Employee to Manager</mat-card-title>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <mat-form-field  class="w100">
+                                <mat-label>Manager Id</mat-label>
+                                <mat-select (selectionChange) = "getSelected($event)" [(ngModel)]="managerId">
+                                  <mat-option *ngFor= "let id of managerIds" [value] ="id" >{{id}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field  class="w100">
+                                <mat-label>Employee Id</mat-label>
+                                <mat-select (selectionChange) = "getSelected($event)" [(ngModel)]="employeeId">
+                                  <mat-option *ngFor= "let id of employeeIds" [value] ="id" >{{id}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <button (click)="assignEmployee()" mat-raised-button class="w100" color="primary">Assign</button>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-md-6">
+                <mat-card >
+                    <mat-card-title >Manager - Employee List</mat-card-title>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>Id</th>
+                                <th>Manager Id</th>
+                                <th>Employee Id</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of emp_manager;let index = index">
+                                <td>{{(index+1)}}</td>
+                                <td>{{data.managerId}}</td>
+                                <td>{{data.employeeId}}</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+                        </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

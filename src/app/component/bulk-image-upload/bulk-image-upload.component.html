@@ -64,7 +64,7 @@
                         
                         <div class="button-container">
             
-                            <button mat-fab color="warn" (click)="openDialog(item)" aria-label="icon button with a edit icon">
+                            <button mat-fab color="primary" (click)="openDialog(item)" aria-label="icon button with a edit icon">
                               <mat-icon>edit</mat-icon>
                             </button>
                         </div>
@@ -73,7 +73,7 @@
                       <div class="col-md-1 mt-2">
                         <div class="button-container">
             
-                            <button mat-fab color="warn" (click)="deleteEmptyRow(i)" aria-label="icon button with a delete icon">
+                            <button mat-fab color="primary" (click)="deleteEmptyRow(i)" aria-label="icon button with a delete icon">
                               <mat-icon>delete</mat-icon>
                             </button>
                         </div>
@@ -82,7 +82,7 @@
                       <div class="col-md-1 mt-2">
                         <div class="button-container">
             
-                            <button mat-fab color="warn" (click)="download(i)" [style.display]="responseArray[i] ? 'block' : 'none'" aria-label="icon button with a delete icon">
+                            <button mat-fab color="primary" (click)="download(i)" [style.display]="responseArray[i] ? 'block' : 'none'" aria-label="icon button with a delete icon">
                               <mat-icon>download</mat-icon>
                             </button>
                         </div>
@@ -97,13 +97,13 @@
         <div class="row mt-2">
           <div class="col-md-1 mt-2">
             <div class="button-container">
-              <button mat-fab color="warn" (click)="addEmptyRow()" aria-label="icon button with a plus one icon">
+              <button mat-fab color="primary" (click)="addEmptyRow()" aria-label="icon button with a plus one icon">
                 <mat-icon>plus_one</mat-icon>
               </button>
             </div>
           </div>
           <div class="col-md-2 mt-3">
-            <button (click)="saveData()" mat-raised-button class="w100" color="warn">Upload</button>
+            <button (click)="saveData()" mat-raised-button class="w100" color="primary">Upload</button>
           </div>
         </div>
         <!-- <button  mat-raised-button class="w100 mt-3" color="primary" (click)="addEmptyRow()">Add</button> -->

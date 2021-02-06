@@ -7,6 +7,7 @@ import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-ima
 import { ImageEditOptionsComponent } from './component/image-edit-options/image-edit-options.component';
 import { ManagerComponent } from './component/manager/manager.component';
 import { EmployeeComponent } from './component/employee/employee.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'manager/bulkupload', component:BulkImageUploadComponent},
   {path:'manager/selfupload', component:ManagerComponent},
   {path:'employee', component:EmployeeComponent},
+  {path:'admin', component:AdminComponent},
   {path: '**', component:LoginComponent }
 ];
 

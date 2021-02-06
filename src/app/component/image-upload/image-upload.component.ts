@@ -26,13 +26,13 @@ export class ImageUploadComponent implements OnInit {
     containWithinAspectRatio = false;
     transform: ImageTransform = {};
 
-  selectedFile: File;
-  userData:any;
-  imgSrc:any;
-  retrievedImage: any = '';
-  base64Data: any;
-  byteArray:any;
-  imageData:any;
+    selectedFile: File;
+    userData:any;
+    imgSrc:any;
+    retrievedImage: any = '';
+    base64Data: any;
+    byteArray:any;
+    imageData:any;
 
   constructor(private route:Router, private service:MainService,
     private _snackBar: MatSnackBar) {

@@ -23,6 +23,8 @@ export class MainService {
   private edit = "image/editImage";
   private bulk = "image/bulkEdit";
   private empList = "employee/getSubordinates/"
+  private getAllData = "admin/getAllData"
+  private assignManager = "admin/assignManager"
 
   signUp(userData):Observable<any>{
     return this.http.post<any>(this.baseUrl+this.signup, userData, httpOptions);
@@ -46,6 +48,14 @@ export class MainService {
 
   getEmployeeByManagerId(id):Observable<any>{
     return this.http.get<any>(this.baseUrl+this.empList+id);
+  }
+
+  getAllFromDB():Observable<any>{
+    return this.http.get<any>(this.baseUrl+this.getAllData);
+  }
+
+  assignManagerEmployee(data):Observable<any>{
+    return this.http.put<any>(this.baseUrl+this.assignManager, data);
   }
 
 }

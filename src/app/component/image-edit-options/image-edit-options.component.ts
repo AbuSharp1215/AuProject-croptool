@@ -22,13 +22,13 @@ export class ImageEditOptionsComponent implements OnInit {
   containWithinAspectRatio = false;
   transform: ImageTransform = {};
 
-selectedFile: File;
-userData:any;
-imgSrc:any;
-retrievedImage: any = '';
-base64Data: any;
-byteArray:any;
-imageData:any;
+  selectedFile: File;
+  userData:any;
+  imgSrc:any;
+  retrievedImage: any = '';
+  base64Data: any;
+  byteArray:any;
+  imageData:any;
 
 constructor(
   public dialogRef: MatDialogRef<ImageEditOptionsComponent>,
@@ -69,20 +69,6 @@ onUpload() {
   }
   
   console.log(this.imageData);
-
-  // const uploadImageData = new FormData();
-  // uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
-
-  // this.service.uploadImage(uploadImageData,this.userData.employeeId).subscribe({
-  //   next:response =>{
-  //     console.log(response.body);
-  //     this.base64Data = response.body.imageFileData;
-  //     this.retrievedImage = 'data:image/jpeg;base64,'+this.base64Data;
-  //   },
-  //   error:err =>{
-  //     console.log(err);
-  //   }
-  // });
 
 }
 

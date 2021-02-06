@@ -39,6 +39,9 @@ export class BulkImageUploadComponent implements OnInit {
   };
 
   requestBody:any;
+  imageWrapperObject:any = {
+    imageWrapperSet:[]
+  };
   imageWrapper:any = {
     employeeId:'',
     imageFileName:'',
@@ -119,7 +122,7 @@ export class BulkImageUploadComponent implements OnInit {
   }
 
   getSelected(event){
-    this.tempId.push(event.value);
+    //this.tempId.push(event.value);
     console.log(event);
     console.log(this.bulkImageArray);
   }
@@ -189,7 +192,8 @@ export class BulkImageUploadComponent implements OnInit {
     if(this.bulkImageArray.length == this.requestBody.length){
 
       console.log(this.requestBody)
-      this.service.uploadBulk(this.requestBody).subscribe({
+      this.imageWrapperObject.imageWrapperSet = this.requestBody;
+      this.service.uploadBulk(this.imageWrapperObject).subscribe({
         next:response =>{
           console.log("response from server "+response.responseEditedImages);
           this.responseArray = response.responseEditedImages;
