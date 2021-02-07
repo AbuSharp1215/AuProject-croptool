@@ -1,54 +1,79 @@
+
 <div>
     <div class="container-fluid ">
       <div class="row">
         <div class="col-md-12">
             <mat-card>
               <mat-card-title >Image editing options</mat-card-title>
-            <div class="row mt-2">
-                <div class="col-md-3">
-                    <button (click)="resetImage()" mat-raised-button class="w100" color="primary">Reset image</button>
-                </div>
-                <div class="col-md-3  mt-2">
-                    <button (click)="toggleContainWithinAspectRatio()" mat-raised-button class="w100" color="primary">{{containWithinAspectRatio?'Fill Aspect Ratio':'Contain Within Aspect Ratio'}}</button>
-                </div>
-                <div class="col-md-3 mt-2">
-                    <button (click)="zoomOut()" mat-raised-button class="w100" color="primary">Zoom -</button> 
-                </div>
-                <div class="col-md-3 mt-2">
-                    <button (click)="zoomIn()" mat-raised-button class="w100" color="primary">Zoom +</button>
-                </div>
-              </div>
-              <!----------->
-              <div class="row mt-3">
-                <div class="col-md-2">
-                    <label>Rotation Degree</label>
-                </div>
-                <div class="col-md-4">
-                    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" /> 
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="row">
-                    <div class="col-md-3">
-                        <button (click)="rotateLeft()" mat-raised-button class="w100" color="primary">Rotate left</button>
-                    </div>
-                    <div class="col-md-3 mt-2">
-                        <button (click)="rotateRight()" mat-raised-button class="w100" color="primary">Rotate right</button>
-                    </div>
-                    <div class="col-md-3 mt-2">
-                        <button (click)="flipHorizontal()" mat-raised-button class="w100" color="primary">Flip horizontal</button>
-                    </div>
-                    <div class="col-md-3 mt-2">
-                        <button (click)="flipVertical()" mat-raised-button class="w100" color="primary">Flip vertical</button>
-                    </div>
-                </div>
-                </div>
-                
-              </div>
-             
           
           <!------------row 2-->
           <div class="row mt-3">
+
+            <div class="col-md-3">
+              <div class="row mt-2">
+                <div class="col-md-3">
+                  <label>Rotation Degree</label>
+                </div>
+                <div class="col-md-9">
+                  <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" /> 
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-2 mt-2">
+
+                  <button style="font-size: 18px;" class="icon-size" mat-mini-fab color="primary" (click)="toggleContainWithinAspectRatio()" aria-label="icon button with a aspect icon">
+                    <mat-icon>{{containWithinAspectRatio?'image_aspect_ratio':'aspect_ratio'}}</mat-icon>
+                  </button>
+                </div>
+                <div class="col-md-2 mt-2">
+                  
+                  <button mat-mini-fab color="primary" (click)="resetImage()" aria-label="icon button with a loop icon">
+                    <mat-icon>loop</mat-icon>
+                  </button>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2 mt-2">
+                       
+                  <button mat-mini-fab color="primary" (click)="zoomOut()" aria-label="icon button with a zoom_out icon">
+                    <mat-icon>zoom_out</mat-icon>
+                  </button>
+                </div>
+                <div class="col-md-2 mt-2">
+                  
+                  <button mat-mini-fab color="primary" (click)="zoomIn()" aria-label="icon button with a zoom_in icon">
+                    <mat-icon>zoom_in</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-2 mt-2">
+                  <button mat-mini-fab color="primary" (click)="rotateLeft()" aria-label="icon button with a rotate_left icon">
+                    <mat-icon>rotate_left</mat-icon>
+                  </button>
+                  </div>
+                  <div class="col-md-2 mt-2">
+                    <button mat-mini-fab color="primary" (click)="rotateRight()" aria-label="icon button with a rotate_right icon">
+                      <mat-icon>rotate_right</mat-icon>
+                    </button>
+                  </div>
+
+                  <div class="col-md-2"></div>
+                  <div class="col-md-2 mt-2">
+                     
+                    <button mat-mini-fab color="primary" (click)="flipHorizontal()" aria-label="icon button with a flip icon">
+                      <mat-icon>flip</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-md-2 mt-2">
+                    <button style="transform: rotate(90deg);"mat-mini-fab color="primary" (click)="flipVertical()" aria-label="icon button with a flip icon">
+                      <mat-icon>flip</mat-icon>
+                    </button>
+                  </div>
+              </div>
+              
+            </div>
             
             <div class="col-md-3">
               <image-cropper

@@ -11,6 +11,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     flex: 1 1 auto;
 }
 
+.icon-size{
+    font-size: 18px !important;
+    vertical-align: sub !important;
+}
+
 input{
     width: 100%;
     padding: 12px 20px;

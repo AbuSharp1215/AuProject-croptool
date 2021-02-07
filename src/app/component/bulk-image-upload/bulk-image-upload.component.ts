@@ -20,6 +20,7 @@ export interface DialogData {
 })
 export class BulkImageUploadComponent implements OnInit {
 
+  isLoading:boolean = false;
   bulkImageArray:any;
   employeeList:any;
   employeeIds:any;
@@ -71,6 +72,7 @@ export class BulkImageUploadComponent implements OnInit {
    }
 
    ngOnInit(): void {
+     this.isLoading = true;
     this.userData = JSON.parse(sessionStorage.getItem("employee"));
     if(!this.userData){
       console.log("no data found");
@@ -88,6 +90,7 @@ export class BulkImageUploadComponent implements OnInit {
           });
           this.employeeIds.sort();
           console.log(this.employeeList);
+          this.isLoading=false;
         }
       },
       error: err => {

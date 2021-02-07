@@ -93,6 +93,7 @@ export class ImageUploadComponent implements OnInit {
         console.log(response);
         this.base64Data = response.imageFileData;
         this.retrievedImage = 'data:image/jpeg;base64,'+this.base64Data;
+        this.imageChangedEvent='';
         
       },
       error: err =>{
@@ -132,6 +133,7 @@ export class ImageUploadComponent implements OnInit {
     console.log(event);
     console.log(event.target.files[0]);
     this.imageChangedEvent = event;
+    this.retrievedImage = '';
 }
 
 imageCropped(event: ImageCroppedEvent) {
