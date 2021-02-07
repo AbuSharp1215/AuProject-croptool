@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from  './component/register/register.component';
+import { RegisterComponent, RegisterSuccess } from  './component/register/register.component';
 import { ImageUploadComponent } from './component/image-upload/image-upload.component';
 import { BulkImageUploadComponent } from './component/bulk-image-upload/bulk-image-upload.component'; 
 import { ImageEditOptionsComponent } from './component/image-edit-options/image-edit-options.component';
@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:'manager/selfupload', component:ManagerComponent},
   {path:'employee', component:EmployeeComponent},
   {path:'admin', component:AdminComponent},
+  {path:'success', component:RegisterSuccess},
   {path: '**', component:LoginComponent }
 ];
 

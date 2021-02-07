@@ -1,7 +1,9 @@
-<div [style.display] = "isLoading?'':'none'" style="height: 100vh; width: 100vw; position: absolute; top:50%; text-align: center; z-index: 1000;">
-  Loading
+<div [style.display] = "isLoading?'':'none'" 
+  style="background-color:#0b0b0b47; height: 100%; width: 100%; position: fixed; text-align: center; z-index: 1000;">
+  <mat-spinner style="margin-top: 25%; margin-left: 50%;" diameter="40"></mat-spinner>
 </div>
-<mat-toolbar  color="primary">
+
+<mat-toolbar  class="blue">
     <button mat-icon-button class="icon" aria-label="icon-button with home icon">
         <mat-icon>home</mat-icon>
     </button>
@@ -67,8 +69,8 @@
                         
                         <div class="button-container">
             
-                            <button mat-fab color="primary" (click)="openDialog(item)" aria-label="icon button with a edit icon">
-                              <mat-icon>edit</mat-icon>
+                            <button class="btn btn-primary round" (click)="openDialog(item)" aria-label="icon button with a edit icon">
+                              <mat-icon class="icon-size">edit</mat-icon>
                             </button>
                         </div>
                       </div>
@@ -76,8 +78,8 @@
                       <div class="col-md-1 mt-2">
                         <div class="button-container">
             
-                            <button mat-fab color="primary" (click)="deleteEmptyRow(i)" aria-label="icon button with a delete icon">
-                              <mat-icon>delete</mat-icon>
+                            <button class="btn btn-primary round"(click)="deleteEmptyRow(i)" aria-label="icon button with a delete icon">
+                              <mat-icon class="icon-size">delete</mat-icon>
                             </button>
                         </div>
                         
@@ -85,8 +87,8 @@
                       <div class="col-md-1 mt-2">
                         <div class="button-container">
             
-                            <button mat-fab color="primary" (click)="download(i,item)" [style.display]="responseArray[i] ? 'block' : 'none'" aria-label="icon button with a delete icon">
-                              <mat-icon>download</mat-icon>
+                            <button class="btn btn-primary round" (click)="download(i,item)" [style.display]="item.retrivedImage ? 'block' : 'none'" aria-label="icon button with a delete icon">
+                              <mat-icon class="icon-size">download</mat-icon>
                             </button>
                         </div>
                         
@@ -100,13 +102,13 @@
         <div class="row mt-2">
           <div class="col-md-1 mt-2">
             <div class="button-container">
-              <button mat-fab color="primary" (click)="addEmptyRow()" aria-label="icon button with a plus one icon">
-                <mat-icon>plus_one</mat-icon>
+              <button class="btn btn-primary round" (click)="addEmptyRow()" aria-label="icon button with a plus one icon">
+                <mat-icon class="icon-size">plus_one</mat-icon>
               </button>
             </div>
           </div>
           <div class="col-md-2 mt-3">
-            <button (click)="saveData()" mat-raised-button class="w100" color="primary">Upload</button>
+            <button (click)="saveData()" class="w100 btn btn-primary" >Upload</button>
           </div>
         </div>
         <!-- <button  mat-raised-button class="w100 mt-3" color="primary" (click)="addEmptyRow()">Add</button> -->

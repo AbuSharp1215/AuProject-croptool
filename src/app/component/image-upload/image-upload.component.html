@@ -1,22 +1,31 @@
-
+<div [style.display] = "isLoading?'':'none'" 
+  style="background-color:#0b0b0b47; height: 100%; width: 100%; position: fixed; text-align: center; z-index: 1000;">
+  <mat-spinner style="margin-top: 25%; margin-left: 50%;" diameter="40"></mat-spinner>
+</div>
 <div>
     <div class="container-fluid ">
-      <div class="row mt-3">
+      <div class="row mt-2">
         <div class="col-md-12">
-            <mat-card>
-              <mat-card-title >Your Details</mat-card-title>
+            <mat-card >
+              <mat-card-title >Details</mat-card-title>
               <div class="row">
                 <div class="col-md-2">
-                  <span>Employee Id: {{employeeId}}</span>
+                  <mat-card >
+                  <span style="font-size: 20px;">Employee Id: {{employeeId}}</span>
+                   </mat-card>
                 </div>
                 <div class="col-md-4">
-                  <span>Employee Name: {{employeeName}}</span>
+                  <mat-card >
+                    <span style="font-size: 20px;">Employee Name: {{employeeName}}</span>
+                  </mat-card>
                 </div>
                 <div class="col-md-4">
-                  <span>Employee Email: {{employeeEmail}}</span>
+                  <mat-card>
+                    <span style="font-size: 20px;">Employee Email: {{employeeEmail}}</span>
+                  </mat-card>
                 </div>
                 <div class="col-md-2">
-                  <span>Role: {{employeeRole}}</span>
+                  <mat-card ><span style="font-size: 20px;">Role: {{employeeRole}}</span></mat-card>
                 </div>
               </div>
             </mat-card>
@@ -45,68 +54,68 @@
                   <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" /> 
                 </div>
               </div>
-
+              <mat-card >
               <div class="row mt-2">
                 <div class="col-md-2 mt-2">
 
-                  <button mat-fab color="primary" (click)="toggleContainWithinAspectRatio()" aria-label="icon button with a aspect icon">
-                    <mat-icon>{{containWithinAspectRatio?'image_aspect_ratio':'aspect_ratio'}}</mat-icon>
+                  <button class="btn btn-primary round icon-size" style="font-size: 18px;" (click)="toggleContainWithinAspectRatio()" aria-label="icon button with a aspect icon">
+                    <mat-icon class="icon-size">{{containWithinAspectRatio?'image_aspect_ratio':'aspect_ratio'}}</mat-icon>
                   </button>
                 </div>
                 <div class="col-md-2 mt-2">
                   
-                  <button mat-fab color="primary" (click)="resetImage()" aria-label="icon button with a loop icon">
-                    <mat-icon>loop</mat-icon>
+                  <button class="btn btn-primary round" (click)="resetImage()" aria-label="icon button with a loop icon">
+                    <mat-icon class="icon-size">loop</mat-icon>
                   </button>
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-2 mt-2">
                        
-                  <button mat-fab color="primary" (click)="zoomOut()" aria-label="icon button with a zoom_out icon">
-                    <mat-icon>zoom_out</mat-icon>
+                  <button class="btn btn-primary round" (click)="zoomOut()" aria-label="icon button with a zoom_out icon">
+                    <mat-icon class="icon-size">zoom_out</mat-icon>
                   </button>
                 </div>
                 <div class="col-md-2 mt-2">
                   
-                  <button mat-fab color="primary" (click)="zoomIn()" aria-label="icon button with a zoom_in icon">
-                    <mat-icon>zoom_in</mat-icon>
+                  <button class="btn btn-primary round" (click)="zoomIn()" aria-label="icon button with a zoom_in icon">
+                    <mat-icon class="icon-size">zoom_in</mat-icon>
                   </button>
                 </div>
               </div>
-
+            
               <div class="row mt-3">
                 <div class="col-md-2 mt-2">
-                  <button mat-fab color="primary" (click)="rotateLeft()" aria-label="icon button with a rotate_left icon">
-                    <mat-icon>rotate_left</mat-icon>
+                  <button class="btn btn-primary round" (click)="rotateLeft()" aria-label="icon button with a rotate_left icon">
+                    <mat-icon class="icon-size">rotate_left</mat-icon>
                   </button>
                   </div>
                   <div class="col-md-2 mt-2">
-                    <button mat-fab color="primary" (click)="rotateRight()" aria-label="icon button with a rotate_right icon">
-                      <mat-icon>rotate_right</mat-icon>
+                    <button class="btn btn-primary round" (click)="rotateRight()" aria-label="icon button with a rotate_right icon">
+                      <mat-icon class="icon-size">rotate_right</mat-icon>
                     </button>
                   </div>
 
                   <div class="col-md-2"></div>
                   <div class="col-md-2 mt-2">
                      
-                    <button mat-fab color="primary" (click)="flipHorizontal()" aria-label="icon button with a flip icon">
-                      <mat-icon>flip</mat-icon>
+                    <button class="btn btn-primary round" (click)="flipHorizontal()" aria-label="icon button with a flip icon">
+                      <mat-icon class="icon-size">flip</mat-icon>
                     </button>
                   </div>
                   <div class="col-md-2 mt-2">
-                    <button style="transform: rotate(90deg);"mat-fab color="primary" (click)="flipVertical()" aria-label="icon button with a flip icon">
-                      <mat-icon>flip</mat-icon>
+                    <button style="transform: rotate(90deg);" class="btn btn-primary round" (click)="flipVertical()" aria-label="icon button with a flip icon">
+                      <mat-icon class="icon-size">flip</mat-icon>
                     </button>
                   </div>
               </div>
-              
+            </mat-card>
               <div class="row mt-3">
                 <div class="col-md-5 mt-2">
-                  <button (click)="onUpload()" mat-raised-button class="w100" color="primary">Upload</button>
+                  <button (click)="onUpload()" class="w100 btn btn-primary">Upload</button>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5 mt-2">
-                  <button (click)="download()" mat-raised-button class="w100" [style.display]="retrievedImage ? 'block' : 'none'" color="primary">Download</button>
+                  <button (click)="download()" class="w100 btn btn-primary" [style.display]="retrievedImage ? 'block' : 'none'">Download</button>
                  
                 </div>
               </div>

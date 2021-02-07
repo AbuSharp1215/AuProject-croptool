@@ -9,7 +9,7 @@
           <!------------row 2-->
           <div class="row mt-3">
 
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="row mt-2">
                 <div class="col-md-3">
                   <label>Rotation Degree</label>
@@ -19,63 +19,65 @@
                 </div>
               </div>
 
-              <div class="row mt-2">
-                <div class="col-md-2 mt-2">
-
-                  <button style="font-size: 18px;" class="icon-size" mat-mini-fab color="primary" (click)="toggleContainWithinAspectRatio()" aria-label="icon button with a aspect icon">
-                    <mat-icon>{{containWithinAspectRatio?'image_aspect_ratio':'aspect_ratio'}}</mat-icon>
-                  </button>
-                </div>
-                <div class="col-md-2 mt-2">
-                  
-                  <button mat-mini-fab color="primary" (click)="resetImage()" aria-label="icon button with a loop icon">
-                    <mat-icon>loop</mat-icon>
-                  </button>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-2 mt-2">
-                       
-                  <button mat-mini-fab color="primary" (click)="zoomOut()" aria-label="icon button with a zoom_out icon">
-                    <mat-icon>zoom_out</mat-icon>
-                  </button>
-                </div>
-                <div class="col-md-2 mt-2">
-                  
-                  <button mat-mini-fab color="primary" (click)="zoomIn()" aria-label="icon button with a zoom_in icon">
-                    <mat-icon>zoom_in</mat-icon>
-                  </button>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-                <div class="col-md-2 mt-2">
-                  <button mat-mini-fab color="primary" (click)="rotateLeft()" aria-label="icon button with a rotate_left icon">
-                    <mat-icon>rotate_left</mat-icon>
-                  </button>
-                  </div>
+              <mat-card >
+                <div class="row mt-2">
                   <div class="col-md-2 mt-2">
-                    <button mat-mini-fab color="primary" (click)="rotateRight()" aria-label="icon button with a rotate_right icon">
-                      <mat-icon>rotate_right</mat-icon>
+  
+                    <button class="btn btn-primary round icon-size" style="font-size: 18px;" (click)="toggleContainWithinAspectRatio()" aria-label="icon button with a aspect icon">
+                      <mat-icon class="icon-size">{{containWithinAspectRatio?'image_aspect_ratio':'aspect_ratio'}}</mat-icon>
                     </button>
                   </div>
-
+                  <div class="col-md-2 mt-2">
+                    
+                    <button class="btn btn-primary round" (click)="resetImage()" aria-label="icon button with a loop icon">
+                      <mat-icon class="icon-size">loop</mat-icon>
+                    </button>
+                  </div>
                   <div class="col-md-2"></div>
                   <div class="col-md-2 mt-2">
-                     
-                    <button mat-mini-fab color="primary" (click)="flipHorizontal()" aria-label="icon button with a flip icon">
-                      <mat-icon>flip</mat-icon>
+                         
+                    <button class="btn btn-primary round" (click)="zoomOut()" aria-label="icon button with a zoom_out icon">
+                      <mat-icon class="icon-size">zoom_out</mat-icon>
                     </button>
                   </div>
                   <div class="col-md-2 mt-2">
-                    <button style="transform: rotate(90deg);"mat-mini-fab color="primary" (click)="flipVertical()" aria-label="icon button with a flip icon">
-                      <mat-icon>flip</mat-icon>
+                    
+                    <button class="btn btn-primary round" (click)="zoomIn()" aria-label="icon button with a zoom_in icon">
+                      <mat-icon class="icon-size">zoom_in</mat-icon>
                     </button>
                   </div>
-              </div>
+                </div>
+              
+                <div class="row mt-3">
+                  <div class="col-md-2 mt-2">
+                    <button class="btn btn-primary round" (click)="rotateLeft()" aria-label="icon button with a rotate_left icon">
+                      <mat-icon class="icon-size">rotate_left</mat-icon>
+                    </button>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                      <button class="btn btn-primary round" (click)="rotateRight()" aria-label="icon button with a rotate_right icon">
+                        <mat-icon class="icon-size">rotate_right</mat-icon>
+                      </button>
+                    </div>
+  
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2 mt-2">
+                       
+                      <button class="btn btn-primary round" (click)="flipHorizontal()" aria-label="icon button with a flip icon">
+                        <mat-icon class="icon-size">flip</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                      <button style="transform: rotate(90deg);" class="btn btn-primary round" (click)="flipVertical()" aria-label="icon button with a flip icon">
+                        <mat-icon class="icon-size">flip</mat-icon>
+                      </button>
+                    </div>
+                </div>
+              </mat-card>
               
             </div>
             
-            <div class="col-md-3">
+            <div class="col-md-4">
               <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 [imageBase64]="imageRetrivedData"
@@ -103,14 +105,14 @@
 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <img [src]="retrievedImage" [style.border]="retrievedImage ? '1px solid black' : 'none'" width="50%"/>
 
             </div>
         </div>
         <div mat-dialog-actions>
             <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
-            <button mat-raised-button color="primary" [mat-dialog-close]="croppedImage" cdkFocusInitial>Ok</button>
+            <button class="btn btn-primary" [mat-dialog-close]="croppedImage" cdkFocusInitial>Ok</button>
           </div>
         </mat-card>
         </div>

@@ -12,6 +12,7 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class LoginComponent implements OnInit {
 
+  isLoading:boolean;
   passwordSuccess:boolean;
   email:String;
   password:String;
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private service:MainService) {
       
+      this.isLoading = false;
       this.data ={
         email:"",
         password:""
@@ -54,6 +56,7 @@ export class LoginComponent implements OnInit {
       })
     }
     else{
+      this.isLoading = true;
       console.log("form submitted"+this.userform.value);
       console.log(this.email);
       console.log(this.password);
@@ -66,6 +69,7 @@ export class LoginComponent implements OnInit {
       this.service.loginUser(this.data).subscribe({
         next:response => {
           console.log(response);
+          this.isLoading = false;
           var role = response.role;
          
           if(role=='manager'){
@@ -80,6 +84,7 @@ export class LoginComponent implements OnInit {
         },
         error: err =>{
           console.log(err.error.message);
+          this.isLoading = false;
           this._snackBar.open(err.error.message, "error", {
             duration: 2000,
           })

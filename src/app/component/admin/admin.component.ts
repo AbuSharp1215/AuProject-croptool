@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainService } from 'src/app/services/main.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +9,8 @@ import { MainService } from 'src/app/services/main.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+  isLoading:boolean;
 
   employeeWithManager:any;
   employeeWithoutManager:any;
@@ -20,7 +23,8 @@ export class AdminComponent implements OnInit {
   map:any;
 
 
-  constructor(private route:Router, private service:MainService) { 
+  constructor(private route:Router, private service:MainService, private _snackBar:MatSnackBar) { 
+    this.isLoading = false;
     this.employeeIds = [];
     this.managerIds = [];
     this.emp_manager = [];
@@ -31,6 +35,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.getData();
   }
 
@@ -72,9 +77,14 @@ export class AdminComponent implements OnInit {
             this.managerIds.push(JSON.parse(JSON.stringify(element.employeeId)));
           });
         }
+        this.isLoading = false;
       },
       error:err => {
         console.log(err);
+        this.isLoading = false;
+        this._snackBar.open("Please try again later","Internal Server Error", {
+          duration: 2000,
+        })
       }
     })
   }
@@ -86,6 +96,7 @@ export class AdminComponent implements OnInit {
   }
 
   assignEmployee(){
+    this.isLoading = true;
     this.map.employeeId = this.employeeId;
     this.map.managerId = this.managerId;
     
@@ -94,9 +105,14 @@ export class AdminComponent implements OnInit {
       next:response => {
         console.log(response);
         this.getData();
+        this.isLoading = false;
       },
       error:err => {
         console.log(err);
+        this.isLoading = false;
+        this._snackBar.open("Please try again later","Internal Server Error", {
+          duration: 2000,
+        })
       }
     });
   }

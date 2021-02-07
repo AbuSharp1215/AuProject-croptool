@@ -16,7 +16,7 @@ declare var require: any;
 })
 export class ImageUploadComponent implements OnInit {
   
-    
+    isLoading:boolean;
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -43,11 +43,13 @@ export class ImageUploadComponent implements OnInit {
   constructor(private route:Router, private service:MainService,
     private _snackBar: MatSnackBar) {
         
+        this.isLoading = false;
    
    }
 
 
   ngOnInit(): void {
+      this.isLoading = true;
     this.userData = JSON.parse(sessionStorage.getItem("employee"));
     if(!this.userData){
         console.log("no data found");
@@ -58,6 +60,7 @@ export class ImageUploadComponent implements OnInit {
     this.employeeName = this.userData.employeeName;
     this.employeeEmail = this.userData.email;
     this.employeeRole = this.userData.role;
+    this.isLoading = false;
   }
 
 
@@ -76,6 +79,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   onUpload() {
+    this.isLoading = true;
     console.log(this.selectedFile);
     console.log(base64ToFile(this.croppedImage));
     this.byteArray = this.croppedImage.substring(this.croppedImage.indexOf("base64,")+"base64,".length); 
@@ -91,6 +95,7 @@ export class ImageUploadComponent implements OnInit {
     this.service.uploadAndGetImage(this.imageData).subscribe({
       next: response =>{
         console.log(response);
+        this.isLoading = false;
         this.base64Data = response.imageFileData;
         this.retrievedImage = 'data:image/jpeg;base64,'+this.base64Data;
         this.imageChangedEvent='';
@@ -99,6 +104,7 @@ export class ImageUploadComponent implements OnInit {
       error: err =>{
         console.log("Error occured");
         console.log(err);
+        this.isLoading = false;
         this._snackBar.open("Internal Server Error", "Error", {
             duration: 2000,
           })
@@ -122,8 +128,10 @@ export class ImageUploadComponent implements OnInit {
   }
 
   download(){
+      this.isLoading = true;
     var FileSaver = require('file-saver');
     FileSaver.saveAs(base64ToFile(this.croppedImage), "image.jpeg");
+    this.isLoading = false;
   }
 
   //------image cropper//

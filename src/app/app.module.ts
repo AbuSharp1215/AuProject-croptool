@@ -25,6 +25,7 @@ import { ImageEditOptionsComponent } from './component/image-edit-options/image-
 import { EmployeeComponent } from './component/employee/employee.component';
 import { ManagerComponent } from './component/manager/manager.component';
 import { AdminComponent } from './component/admin/admin.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AdminComponent } from './component/admin/admin.component';
     HttpClientModule,
     MatSnackBarModule,
     MatDialogModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

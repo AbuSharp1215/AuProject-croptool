@@ -95,6 +95,7 @@ export class BulkImageUploadComponent implements OnInit {
       },
       error: err => {
         console.log(err);
+        this.isLoading=false;
       }
     });
 
@@ -181,6 +182,7 @@ export class BulkImageUploadComponent implements OnInit {
   }
 
   saveData(){
+    this.isLoading=true;
     this.requestBody=[];
     this.bulkImageArray.forEach(element => {
       if(element.employeeId=='' || element.imageFileNam=='' || element.imageFileType=='' || element.imageFileData==''){
@@ -216,9 +218,14 @@ export class BulkImageUploadComponent implements OnInit {
             this.bulkImageArray[index].retrivedImageCopy = 'data:image/jpeg;base64,'+element.imageFileData;
             //expect(this.bulkImageArray[index].retrivedImage).toBe('data:image/jpeg;base64,'+element.imageFileData);
           });
+          this.isLoading=false;
         },
         error:err=>{
           console.log(err);
+          this.isLoading=false;
+          this._snackBar.open("Please try again later","Internal Server Error", {
+            duration: 2000,
+          })
         }
       });
     }

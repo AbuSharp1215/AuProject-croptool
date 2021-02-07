@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MainService } from 'src/app/services/main.service';
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
+  isLoading:boolean;
   empRole:any;
 
   role:String;
@@ -21,6 +23,7 @@ export class RegisterComponent implements OnInit {
     private service:MainService,
     private route:Router) {
     
+    this.isLoading = false;
     this.empRole = [
       "employee","manager"
     ];
@@ -32,11 +35,13 @@ export class RegisterComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(RegisterSuccess);
+    const dialogRef = this.dialog.open(RegisterSuccess, {
+      width: '20%',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
+      console.log(result+': The dialog was closed');
+      this.route.navigate(['/login']);
     });
   }
 
@@ -62,6 +67,8 @@ export class RegisterComponent implements OnInit {
 
   register(){
     
+    this.isLoading = true;
+    
     if(this.userform.invalid){
       this._snackBar.open("Please fill all fields correctly", "Validation error", {
         duration: 2000,
@@ -78,12 +85,17 @@ export class RegisterComponent implements OnInit {
 
       this.service.signUp(this.userform.value).subscribe({
         next:response =>{
+          this.isLoading = false;
           console.log(response);
-          alert("signup successfully");
-          this.route.navigate(['/login']);
+          this.openDialog();
+          
         },
         error:err =>{
+          this.isLoading = false;
           console.log(err);
+          this._snackBar.open("Please try again later","Internal Server Error", {
+            duration: 2000,
+          })
         }
       });
       
@@ -96,8 +108,19 @@ export class RegisterComponent implements OnInit {
 
 @Component({
   selector: 'register-success',
-  template: '<p>User Registered Successfully<p>'
+  template: `<h1 mat-dialog-title>Success Alert </h1>
+  <div mat-dialog-content>
+    <p>Registration Success</p>
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-primary" [mat-dialog-close]="result" cdkFocusInitial>Ok</button>
+  </div>`
 })
-export class RegisterSuccess {}
+export class RegisterSuccess {
+  result:any = 'success'
+  constructor(public dialogRef: MatDialogRef<RegisterSuccess>){
+
+  }
+}
 
 
