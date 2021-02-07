@@ -1,7 +1,28 @@
 
 <div>
     <div class="container-fluid ">
-      <div class="row mt-4">
+      <div class="row mt-3">
+        <div class="col-md-12">
+            <mat-card>
+              <mat-card-title >Your Details</mat-card-title>
+              <div class="row">
+                <div class="col-md-2">
+                  <span>Employee Id: {{employeeId}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span>Employee Name: {{employeeName}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span>Employee Email: {{employeeEmail}}</span>
+                </div>
+                <div class="col-md-2">
+                  <span>Role: {{employeeRole}}</span>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      <div class="row mt-2">
         <div class="col-md-12">
             <mat-card>
               <mat-card-title >Image editing options</mat-card-title>
@@ -11,6 +32,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <input type="file" (change)="fileChangeEvent($event)" />
+                      
                     </div>
                     <div class="col-md-6">
                       <button (click)="toggleContainWithinAspectRatio()" mat-raised-button class="w100" color="primary">{{containWithinAspectRatio?'Fill Aspect Ratio':'Contain Within Aspect Ratio'}}</button>
@@ -88,12 +110,32 @@
                 
             </div>
             <div class="col-md-3">
-              <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+              <!-- <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" /> -->
+
+              <image-cropper
+                [imageBase64]="retrievedImage"
+                [maintainAspectRatio]="true"
+                [containWithinAspectRatio]="containWithinAspectRatio"
+                [aspectRatio]="4 / 3"
+                [resizeToWidth]="256"
+                [cropperMinWidth]="128"
+                [onlyScaleDown]="true"
+                [roundCropper]="false"
+                [canvasRotation]="canvasRotation"
+                [transform]="transform"
+                [alignImage]="'left'"
+                [style.display]="showCropper ? null : 'none'"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady($event)"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
 
             </div>
 
             <div class="col-md-3">
-              <img [src]="retrievedImage" [style.border]="retrievedImage ? '1px solid black' : 'none'" width="100%"/>
+              <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" width="100%"/>
 
             </div>
             <div class="col-md-3">

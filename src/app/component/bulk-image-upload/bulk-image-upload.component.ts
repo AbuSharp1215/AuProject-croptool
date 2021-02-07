@@ -35,7 +35,9 @@ export class BulkImageUploadComponent implements OnInit {
     imageFileName:'',
     imageFileType:'',
     imageFileData:'',
-    retrivedImage:''
+    imageFileDataCopy:'',
+    retrivedImage:'',
+    retrivedImageCopy:'',
   };
 
   requestBody:any;
@@ -105,11 +107,17 @@ export class BulkImageUploadComponent implements OnInit {
      }
     const dialogRef = this.dialog.open(ImageEditOptionsComponent, {
       width: '100%',
-      data: {event:item.imageChangeEvent, croppedImage:item.imageFileData}
+      data: {event:{imageChanged:item.imageChangeEvent, base64Data:item.retrivedImageCopy}, croppedImage:item.imageFileData}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      item.imageFileData = result;
+      if(item.retrivedImage){
+        item.retrivedImage = result;
+      }
+      else{
+        item.imageFileData = result;  
+      }
+      
       console.log('The dialog was closed');
     });
   }
@@ -159,6 +167,7 @@ export class BulkImageUploadComponent implements OnInit {
     reader.onload = function(){
       
       item.imageFileData = reader.result;
+      item.imageFileDataCopy = reader.result;
       //console.log(reader.result);
     }
     reader.onerror = function(error){
@@ -201,6 +210,7 @@ export class BulkImageUploadComponent implements OnInit {
             console.log(element);
             console.log(index);
             this.bulkImageArray[index].retrivedImage = 'data:image/jpeg;base64,'+element.imageFileData;
+            this.bulkImageArray[index].retrivedImageCopy = 'data:image/jpeg;base64,'+element.imageFileData;
             //expect(this.bulkImageArray[index].retrivedImage).toBe('data:image/jpeg;base64,'+element.imageFileData);
           });
         },
@@ -213,8 +223,8 @@ export class BulkImageUploadComponent implements OnInit {
     
   }
 
-  download(index){
+  download(index,item){
     var FileSaver = require('file-saver');
-    FileSaver.saveAs(base64ToFile('data:image/jpeg;base64,'+this.responseArray[index].imageFileData), this.responseArray[index].imageFileName+"_image.jpeg");
+    FileSaver.saveAs(base64ToFile(item.retrivedImage), this.responseArray[index].imageFileName+"_image.jpeg");
   }
 }

@@ -14,6 +14,7 @@ import { DialogData } from '../bulk-image-upload/bulk-image-upload.component';
 export class ImageEditOptionsComponent implements OnInit {
 
   imageChangedEvent: any = '';
+  imageRetrivedData: any;
   croppedImage: any = '';
   canvasRotation = 0;
   rotation = 0;
@@ -36,7 +37,13 @@ constructor(
   dialogRef.disableClose = true;
   this.userData = JSON.parse(sessionStorage.getItem("Employee"));
   console.log(this.userData);
-  this.imageChangedEvent = this.data.event;
+  if(!this.data.event.base64Data){
+    this.imageChangedEvent = this.data.event.imageChanged;
+  }
+  else{
+    console.log("success");
+    this.imageRetrivedData = this.data.event.base64Data;
+  }
  }
 
   onNoClick(): void {

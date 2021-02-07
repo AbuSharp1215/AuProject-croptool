@@ -33,20 +33,31 @@ export class ImageUploadComponent implements OnInit {
     base64Data: any;
     byteArray:any;
     imageData:any;
+    
+    employeeId:String;
+    employeeName:String;
+    employeeEmail:String;
+    employeeRole:String;
+    
 
   constructor(private route:Router, private service:MainService,
     private _snackBar: MatSnackBar) {
         
+   
+   }
+
+
+  ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem("employee"));
     if(!this.userData){
         console.log("no data found");
         this.route.navigate(['']);
     } 
     console.log(this.userData);
-   }
-
-
-  ngOnInit(): void {
+    this.employeeId = this.userData.employeeId;
+    this.employeeName = this.userData.employeeName;
+    this.employeeEmail = this.userData.email;
+    this.employeeRole = this.userData.role;
   }
 
 
@@ -82,6 +93,7 @@ export class ImageUploadComponent implements OnInit {
         console.log(response);
         this.base64Data = response.imageFileData;
         this.retrievedImage = 'data:image/jpeg;base64,'+this.base64Data;
+        
       },
       error: err =>{
         console.log("Error occured");
@@ -110,13 +122,15 @@ export class ImageUploadComponent implements OnInit {
 
   download(){
     var FileSaver = require('file-saver');
-    FileSaver.saveAs(base64ToFile(this.retrievedImage), "image.jpeg");
+    FileSaver.saveAs(base64ToFile(this.croppedImage), "image.jpeg");
   }
 
   //------image cropper//
 
   fileChangeEvent(event: any): void {
     this.onFileChanged(event);
+    console.log(event);
+    console.log(event.target.files[0]);
     this.imageChangedEvent = event;
 }
 

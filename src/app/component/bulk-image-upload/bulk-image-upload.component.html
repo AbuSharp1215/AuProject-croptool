@@ -51,7 +51,7 @@
                           </mat-form-field>
                     </div>
                     <div class="col-md-3 mt-2">
-                      <input type="file" (change)="onFileChanged($event,item)" />
+                      <input [disabled]="item.retrivedImage" type="file" (change)="onFileChanged($event,item)" />
                     </div>
                     <div class="col-md-2">
                       <img [src]="item.imageFileData" [style.border]="item.imageFileData ? '1px solid black' : 'none'" width="100%" />
@@ -82,7 +82,7 @@
                       <div class="col-md-1 mt-2">
                         <div class="button-container">
             
-                            <button mat-fab color="primary" (click)="download(i)" [style.display]="responseArray[i] ? 'block' : 'none'" aria-label="icon button with a delete icon">
+                            <button mat-fab color="primary" (click)="download(i,item)" [style.display]="responseArray[i] ? 'block' : 'none'" aria-label="icon button with a delete icon">
                               <mat-icon>download</mat-icon>
                             </button>
                         </div>
