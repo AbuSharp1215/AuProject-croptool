@@ -82,7 +82,7 @@ export class AdminComponent implements OnInit {
       error:err => {
         console.log(err);
         this.isLoading = false;
-        this._snackBar.open("Please try again later","Internal Server Error", {
+        this._snackBar.open(err.error.message, "error", {
           duration: 2000,
         })
       }
@@ -110,7 +110,7 @@ export class AdminComponent implements OnInit {
       error:err => {
         console.log(err);
         this.isLoading = false;
-        this._snackBar.open("Please try again later","Internal Server Error", {
+        this._snackBar.open(err.error.message, "error", {
           duration: 2000,
         })
       }

@@ -70,11 +70,13 @@ export class RegisterComponent implements OnInit {
     this.isLoading = true;
     
     if(this.userform.invalid){
+      this.isLoading = false;
       this._snackBar.open("Please fill all fields correctly", "Validation error", {
         duration: 2000,
       })
     }
     else if(this.role==""){
+      this.isLoading = false;
       this._snackBar.open("Please select your role", "Validation error", {
         duration: 2000,
       })
@@ -93,7 +95,7 @@ export class RegisterComponent implements OnInit {
         error:err =>{
           this.isLoading = false;
           console.log(err);
-          this._snackBar.open("Please try again later","Internal Server Error", {
+          this._snackBar.open(err.error.message, "error", {
             duration: 2000,
           })
         }

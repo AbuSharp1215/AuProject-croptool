@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
       this.data.email = this.email;
       this.data.password = this.password;
       if(this.email=="admin@1" && this.password=="admin@"){
+        this.isLoading = false;
         this.router.navigate(['/admin']);
       }
       else{
